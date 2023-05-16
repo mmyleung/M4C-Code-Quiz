@@ -1,7 +1,3 @@
-//target question title div
-var questionDiv = document.getElementById("question-title");
-//target choices div
-var choicesDiv = document.getElementById("choices")
 //store questions and choices in object
 var questionObject = [
 
@@ -207,52 +203,3 @@ var questionObject = [
     }
 
 ];
-
-//set variable for current question - initialised to 0
-var currentQuestion = 0;
-
-//function to display question
-function displayQuestion() {
-    //set questionDiv to current question title
-    questionDiv.textContent = questionObject[currentQuestion].question;
-    //remove existing choice buttons
-    choicesDiv.innerHTML = "";
-    //dynamically add buttons according to length choices array
-    for (let i = 0; i < questionObject[currentQuestion].choices.length; i++) {
-        var choiceButton = document.createElement("button");
-        //set text content to equal the choices in choices array
-        choiceButton.textContent = questionObject[currentQuestion].choices[i];
-        //append the buttons to the choices div
-        choicesDiv.appendChild(choiceButton);
-        //add event listener on choice buttons
-        choiceButton.addEventListener("click", checkAnswer);
-    }
-}
-
-displayQuestion();
-
-//checkAnswer function that compares the clicked button text content with answer
-function checkAnswer(eventObj) {
-    eventObj.stopPropagation();
-    //target feedback div
-    var feedback = document.getElementById("feedback");
-    feedback.setAttribute("class", "feedback start");
-    if (this.textContent === questionObject[currentQuestion].answer) {
-        feedback.textContent = "Correct!"
-        console.log(`click correct`)
-        //add 1 to current question index
-        currentQuestion++;
-        //display new question
-        displayQuestion();
-    } else {
-        feedback.textContent = "Wrong!"
-        console.log(`click wrong`)
-        //call function to take away time
-        subtractTime();
-        //add 1 to current question index
-        currentQuestion++;
-        //display new question
-        displayQuestion();
-    }
-}
-
