@@ -25,6 +25,10 @@ startBtn.addEventListener("click", function(event) {
     var startScreen = document.getElementById("start-screen");
     //set class attribute to hide
     startScreen.setAttribute("class", "hide");
+    //target questions div
+    var questionScreen = document.getElementById("questions");
+    //set class attribute to start
+    questionScreen.setAttribute("class", "start");
 });
 
 
