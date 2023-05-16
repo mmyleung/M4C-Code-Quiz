@@ -14,7 +14,7 @@ var endScreen = document.getElementById("end-screen");
 var finalScore = document.getElementById("final-score");
 
 //Initialise time to 75s
-let time = 75;
+let time = 150;
 var timer;
 
 //add event listener to button click
@@ -78,23 +78,37 @@ function checkAnswer(eventObj) {
     if (this.textContent === questionObject[currentQuestion].answer) {
         feedback.textContent = "Correct!"
         console.log(`click correct`)
-        //add 1 to current question index
-        currentQuestion++;
         //call checkTime
         checkTime();
+
+        //if statement to check if already at last question
+        if (currentQuestion < questionObject.length -1) {
+        //add 1 to current question index
+        currentQuestion++;
         //display new question
         displayQuestion();
+        } else {
+            clearInterval(timer);
+            displayFinalScore();
+        }
+        
     } else {
         feedback.textContent = "Wrong!"
         console.log(`click wrong`)
         //call function to take away time
         subtractTime();
-        //add 1 to current question index
-        currentQuestion++;
         //call checkTime
         checkTime();
-        //display new question
-        displayQuestion();
+        //if statement to check if already at last question
+        if (currentQuestion < questionObject.length - 1) {
+            //add 1 to current question index
+            currentQuestion++;
+            //display new question
+            displayQuestion();
+            } else {
+                displayFinalScore();
+                clearInterval(timer);
+            }
     }
 }
 
@@ -115,14 +129,19 @@ function checkTime() {
         //set time to 0
         time = 0;
         setTime();
+        displayFinalScore();
+    } else {
+        return
+    }
+}
+
+//function to display final screen
+function displayFinalScore() {
         //hide questionDiv, show endScreen div
         questionDiv.setAttribute("class", "hide");
         endScreen.setAttribute("class", "start");
         //display score
         finalScore.textContent = time;
-    } else {
-        return
-    }
 }
 
 // WHEN I answer a question
