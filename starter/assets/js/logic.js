@@ -154,6 +154,7 @@ function displayFinalScore() {
 //add event listener to submit button
 submitBtn.addEventListener("click", function(event) {
     event.stopPropagation();
+    event.preventDefault();
     console.log(initials.value);
     var storedScores = JSON.parse(localStorage.getItem("score"));
     if (storedScores !== null) {

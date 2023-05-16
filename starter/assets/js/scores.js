@@ -4,6 +4,9 @@ var scores = JSON.parse(localStorage.getItem("score"));
 //target ordered list
 var highscoreList = document.getElementById("highscores");
 
+//target clear highscores button
+var clearBtn = document.getElementById("clear");
+
 //array that saves the score only
 var sortedScores = scores.sort(function(a, b) {
     return b.score - a.score
@@ -24,3 +27,10 @@ if (scores !== null) {
     }
 
 }
+
+//add event listener on clear highscores button
+clearBtn.addEventListener("click", function(event) {
+    event.stopPropagation();
+    localStorage.clear("score");
+    highscoreList.innerHTML = "";
+})
