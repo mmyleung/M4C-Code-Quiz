@@ -12,6 +12,9 @@ var choicesDiv = document.getElementById("choices")
 var endScreen = document.getElementById("end-screen");
 //target final-score span
 var finalScore = document.getElementById("final-score");
+//target input and submit button
+var initials = document.getElementById("initials");
+var submitBtn = document.getElementById("submit");
 
 //Initialise time to 75s
 let time = 150;
@@ -144,11 +147,11 @@ function displayFinalScore() {
         finalScore.textContent = time;
 }
 
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
+//add event listener to submit button
+submitBtn.addEventListener("click", function(event) {
+    event.stopPropagation();
+    
+})
+
 // WHEN the game is over
 // THEN I can save my initials and score
