@@ -20,6 +20,11 @@ startBtn.addEventListener("click", function(event) {
         //reduce time by 1
         time --;
     }
+    //hide start-screen and display question screen
+    //target start-screen
+    var startScreen = document.getElementById("start-screen");
+    //set class attribute to hide
+    startScreen.setAttribute("class", "hide");
 });
 
 
