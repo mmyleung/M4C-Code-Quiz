@@ -247,6 +247,8 @@ function checkAnswer(eventObj) {
     } else {
         feedback.textContent = "Wrong!"
         console.log(`click wrong`)
+        //call function to take away time
+        subtractTime();
         //add 1 to current question index
         currentQuestion++;
         //display new question
