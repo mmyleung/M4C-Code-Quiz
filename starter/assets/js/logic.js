@@ -6,7 +6,20 @@ var startBtn = document.getElementById("start")
 startBtn.addEventListener("click", function(event) {
     //stop bubbling
     event.stopPropagation;
-    console.log(`start button is clicked`)
+    //THEN a timer starts and I am presented with a question
+    //Initialise time to 75s
+    let time = 75;
+    //setInterval function to trigger function every 1000 milliseconds
+    var timer = setInterval(setTime, 1000);
+    //setTime function will be run to display time and reduce time by 1
+    function setTime() {
+        //target time span
+        var timeDisplay = document.getElementById("time");
+        //set text content to time
+        timeDisplay.textContent = time;
+        //reduce time by 1
+        time --;
+    }
 });
 
 
