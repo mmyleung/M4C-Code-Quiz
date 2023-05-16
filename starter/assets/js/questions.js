@@ -213,7 +213,34 @@ var currentQuestion = 0;
 
 //function to display question
 function displayQuestion() {
+    //set questionDiv to current question title
     questionDiv.textContent = questionObject[currentQuestion].question;
+    //dynamically add buttons according to length choices array
+    for (let i = 0; i < questionObject[currentQuestion].choices.length; i++) {
+        var choiceButton = document.createElement("button");
+        //set text content to equal the choices in choices array
+        choiceButton.textContent = questionObject[currentQuestion].choices[i];
+        //append the buttons to the choices div
+        choicesDiv.appendChild(choiceButton);
+        //add event listener on choice buttons
+        choiceButton.addEventListener("click", checkAnswer);
+    }
 }
 
 displayQuestion();
+
+//checkAnswer function that compares the clicked button text content with answer
+function checkAnswer(eventObj) {
+    eventObj.stopPropagation();
+    //target feedback div
+    var feedback = document.getElementById("feedback");
+    feedback.setAttribute("class", "feedback start");
+    if (this.textContent === questionObject[currentQuestion].answer) {
+        feedback.textContent = "Correct!"
+        console.log(`click correct`)
+    } else {
+        feedback.textContent = "Wrong!"
+        console.log(`click wrong`)
+    }
+}
+
