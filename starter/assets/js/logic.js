@@ -40,15 +40,19 @@ startBtn.addEventListener("click", function(event) {
 
 //setTime function will be run to display time and reduce time by 1
 function setTime() {
+    //reduce time by 1
+    time --;
+    displayTime();
+}
+
+//function to display time
+
+function displayTime() {
     //target time span
     var timeDisplay = document.getElementById("time");
     //set text content to time
     timeDisplay.textContent = time;
-    //reduce time by 1
-    time --;
 }
-
-
 //set variable for current question - initialised to 0
 var currentQuestion = 0;
 
@@ -131,7 +135,7 @@ function checkTime() {
         clearInterval(timer);
         //set time to 0
         time = 0;
-        setTime();
+        displayTime();
         displayFinalScore();
     } else {
         return
@@ -150,7 +154,17 @@ function displayFinalScore() {
 //add event listener to submit button
 submitBtn.addEventListener("click", function(event) {
     event.stopPropagation();
-    
+    console.log(initials.value);
+    var storedScores = JSON.parse(localStorage.getItem("score"));
+    if (storedScores !== null) {
+        storedScores.push({name: initials.value, score: time});
+    } else {
+        storedScores = [];
+        storedScores.push({name: initials.value, score: time});
+    }
+    //take text content of initials and store it in local storage
+    localStorage.setItem("score", JSON.stringify(storedScores));
+    window.location.href = "highscores.html";
 })
 
 // WHEN the game is over
