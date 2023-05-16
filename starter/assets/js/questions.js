@@ -215,6 +215,8 @@ var currentQuestion = 0;
 function displayQuestion() {
     //set questionDiv to current question title
     questionDiv.textContent = questionObject[currentQuestion].question;
+    //remove existing choice buttons
+    choicesDiv.innerHTML = "";
     //dynamically add buttons according to length choices array
     for (let i = 0; i < questionObject[currentQuestion].choices.length; i++) {
         var choiceButton = document.createElement("button");
@@ -238,9 +240,17 @@ function checkAnswer(eventObj) {
     if (this.textContent === questionObject[currentQuestion].answer) {
         feedback.textContent = "Correct!"
         console.log(`click correct`)
+        //add 1 to current question index
+        currentQuestion++;
+        //display new question
+        displayQuestion();
     } else {
         feedback.textContent = "Wrong!"
         console.log(`click wrong`)
+        //add 1 to current question index
+        currentQuestion++;
+        //display new question
+        displayQuestion();
     }
 }
 
