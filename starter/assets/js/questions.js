@@ -208,9 +208,12 @@ var questionObject = [
 
 ];
 
-//dynamically add buttons for choices div depending on number of choices
+//set variable for current question - initialised to 0
+var currentQuestion = 0;
 
-for (let i = 0; i < questionObject[i].choices.length; i++) {
-    var choiceButton = document.createElement("button");
-    choicesDiv.appendChild(choiceButton);
+//function to display question
+function displayQuestion() {
+    questionDiv.textContent = questionObject[currentQuestion].question;
 }
+
+displayQuestion();
