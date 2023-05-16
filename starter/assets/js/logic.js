@@ -10,6 +10,8 @@ var titleDiv = document.getElementById("question-title");
 var choicesDiv = document.getElementById("choices")
 //target end-screen
 var endScreen = document.getElementById("end-screen");
+//target final-score span
+var finalScore = document.getElementById("final-score");
 
 //Initialise time to 75s
 let time = 75;
@@ -108,13 +110,16 @@ function subtractTime() {
 //checkTime function called when button is clicked
 function checkTime() {
     if(time <= 0) {
+        //clear interval to stop timer
+        clearInterval(timer);
         //set time to 0
         time = 0;
         setTime();
-        //clear interval to stop timer
-        clearInterval(timer);
+        //hide questionDiv, show endScreen div
         questionDiv.setAttribute("class", "hide");
         endScreen.setAttribute("class", "start");
+        //display score
+        finalScore.textContent = time;
     } else {
         return
     }
